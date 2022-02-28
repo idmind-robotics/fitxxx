@@ -176,7 +176,7 @@ bool FITXXX::packetDecodeExt(ULDINI_Type *uld)
     tv.tv_sec = 0;
     tv.tv_usec = 100000;
 
-    logDebug("entering select()", tv.tv_usec);
+    CONSOLE_BRIDGE_logDebug("entering select()", tv.tv_usec);
     //(max file description value +1, read fds, write fds, error exit fds, time interval)
     int retval = select(socket_fd_ + 1, &rfds, NULL, NULL, &tv); // if receive fd return 1, else return 0
 

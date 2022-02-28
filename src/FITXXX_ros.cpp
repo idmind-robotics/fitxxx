@@ -80,16 +80,16 @@ FITXXX_ros_node::FITXXX_ros_node()
 , scanParamInitialized_(false)
 {
   // parameters
-  ros::param::get("/fitxxx/scan_range_min", scan_range_min_);
-  ros::param::get("/fitxxx/scan_range_max", scan_range_max_);
+  ros::param::get("fitxxx/scan_range_min", scan_range_min_);
+  ros::param::get("fitxxx/scan_range_max", scan_range_max_);
 
-  ros::param::get("/fitxxx/angle_min", angle_min_);
-  ros::param::get("/fitxxx/angle_max", angle_max_);
+  ros::param::get("fitxxx/angle_min", angle_min_);
+  ros::param::get("fitxxx/angle_max", angle_max_);
 
-  ros::param::get("/fitxxx/frame", frame_id_);
+  ros::param::get("fitxxx/frame", frame_id_);
 
-  ros::param::get("/fitxxx/host_ip", host_ip_);
-  ros::param::get("/fitxxx/port", port_);
+  ros::param::get("fitxxx/host_ip", host_ip_);
+  ros::param::get("fitxxx/port", port_);
 
   laser.setScanAngles(angle_min_, angle_max_);
   
@@ -100,9 +100,9 @@ FITXXX_ros_node::FITXXX_ros_node()
 
   // Services
   //connect_laser_service_ = node_.advertiseService("/fitxxx/connect_laser_srv", &FITXXX_ros_node::connect_laser, this);
-  disconnect_laser_service_ = node_.advertiseService("/fitxxx/disconnect_laser_srv", &FITXXX_ros_node::disconnect_laser, this);
-  start_laser_service_ = node_.advertiseService("/fitxxx/start_laser_srv", &FITXXX_ros_node::start_scan_msg, this);
-  stop_laser_service_ = node_.advertiseService("/fitxxx/stop_laser_srv", &FITXXX_ros_node::stop_scan_msg, this);
+  disconnect_laser_service_ = node_.advertiseService("fitxxx/disconnect_laser_srv", &FITXXX_ros_node::disconnect_laser, this);
+  start_laser_service_ = node_.advertiseService("fitxxx/start_laser_srv", &FITXXX_ros_node::start_scan_msg, this);
+  stop_laser_service_ = node_.advertiseService("fitxxx/stop_laser_srv", &FITXXX_ros_node::stop_scan_msg, this);
   
 }
 

@@ -31,11 +31,11 @@ public:
     if (ret > 0)
     {
       total_length_ += ret;
-      logDebug("Read %d bytes from fd, total length is %d.", ret, total_length_);
+      CONSOLE_BRIDGE_logDebug("Read %d bytes from fd, total length is %d.", ret, total_length_);
     }
     else
     {
-      logWarn("Buffer read() returned error.  %d  ret %d",total_length_,ret);
+      CONSOLE_BRIDGE_logWarn("Buffer read() returned error.  %d  ret %d",total_length_,ret);
     }
   }
   // Find Lim pack start.
@@ -76,7 +76,7 @@ public:
     if (total_length_ == 0)
     {
       // Buffer is empty, no scan data present.
-      logDebug("Empty buffer, nothing to return.");
+      CONSOLE_BRIDGE_logDebug("Empty buffer, nothing to return.");
       return NULL;
     }
 
@@ -85,13 +85,13 @@ public:
     if (start_of_message == NULL)
     {
       // Not foundt LIM TAG, reset buffer.
-      logWarn("No STX found, dropping %d bytes from buffer.", total_length_);
+      CONSOLE_BRIDGE_logWarn("No STX found, dropping %d bytes from buffer.", total_length_);
       total_length_ = 0;
     }
     else if (buffer_ != start_of_message)
     {
       // Shift buffer if start found.
-      logWarn("Shifting buffer, dropping %d bytes, %d bytes remain.",
+      CONSOLE_BRIDGE_logWarn("Shifting buffer, dropping %d bytes, %d bytes remain.",
               (start_of_message - buffer_), total_length_ - (start_of_message - buffer_));
       shiftBuffer(start_of_message);
     }
@@ -101,7 +101,7 @@ public:
     if (end_of_first_message_ == NULL)
     {
       // Return null if no end.
-      logDebug("No ETX found, nothing to return.");
+      CONSOLE_BRIDGE_logDebug("No ETX found, nothing to return.");
       return NULL;
     }
 
